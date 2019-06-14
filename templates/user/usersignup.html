@@ -1,0 +1,109 @@
+{% load staticfiles%}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+
+    <link rel="stylesheet" type="text/css" href="{% static  'design/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static  'design/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'design/bootstrap-3.3.7-dist/jquery/jquery-3.3.1.min.js' %}"></script>
+
+    {% include 'headerfiles.html' %}
+
+</head>
+<body>
+{% include 'publicheader.html' %}
+{% include 'publicsubheader.html' %}
+
+<div class="container">
+<center><h2>Sign Up</h2></center>
+
+
+  <form class="form-horizontal" action="{% url 'usersignupaction' %}" id="signupform" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+      <div class="form-group">
+      <label class="control-label col-sm-3" for="username">Username</label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" id="username" placeholder="Enter Username" name="username">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-3" for="email">Email</label>
+      <div class="col-sm-6">
+        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-3" for="password">Password</label>
+      <div class="col-sm-6">
+        <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+      </div>
+    </div>
+
+    <div class="form-group">
+    <label class="control-label col-sm-3" for="cpwd">Confirm Password</label>
+      <div class="col-sm-6">
+        <input type="password" class="form-control" id="cpwd" placeholder="Confirm password" name="cpwd">
+      </div>
+    </div>
+
+     <div class="form-group">
+    <label class="control-label col-sm-3" for="mobileno">Mobile No</label>
+      <div class="col-sm-6">
+        <input type="tel" maxlength="10" class="form-control" id="mobileno" name="mobileno" placeholder="Mobile" >
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-3" for="address">Address</label>
+      <div class="col-sm-6">
+            <input class="form-control" maxlength="10" type="text" name="address" id="address" placeholder="Address Goes here" >
+        </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-3" for="city">City</label>
+      <div class="col-sm-6">
+        <select class="form-control" id = "city" name="city">
+            {% for city in cities %}
+                <option value="{{ city.id }}">{{ city.name }}</option>
+            {% endfor %}
+        </select>
+          <!--<input class="form-control" type="text" name="city" id="city" placeholder="City" >-->
+        </div>
+    </div>
+
+    <div name="form-group">
+        <label class="control-label col-sm-3">User Photo</label>
+        <div class="col-sm-3">
+            <input class="form-control" type="file" id="photo" name="photo" accept="image/jpg image/png" >
+        </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-6">
+        <div class="checkbox">
+          <label><input type="checkbox" name="remember"> Remember me</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-7">
+        <button style="float:right" type="submit" class="btn btn-md btn-success">Submit</button>
+      </div>
+    </div>
+
+  </form>
+
+</div>
+{% include 'footer.html' %}
+</body>
+</html>

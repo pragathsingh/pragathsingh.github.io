@@ -1,0 +1,41 @@
+{% load staticfiles%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Cuisine</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'design/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+     <script src="{% static 'design/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+</head>
+<body>
+    <h3>Update Cuisine</h3>
+    <div class="col-sm-10">
+<form class="form-horizontal" action="{% url 'updatecusineaction' %}" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+    <label  class="control-label col-sm-2" for="id">Cuisine ID</label>
+    <div class="col-sm-6">
+        <input class="form-control col-sm-10"  type="text" id="id" name="id" value="{{ cuisinedata.id }}">
+    </div>
+    </div>
+
+    <div class="form-group">
+    <label  class="control-label col-sm-2" for="cuisine">Cuisine Name</label>
+    <div class="col-sm-6">
+    <input  class="form-control" type="text" id="cuisine" name="cuisinename" value="{{ cuisinedata.cuisinename }}">
+    </div>
+    </div>
+
+    <div class="form-group">
+    <label  class="control-label col-sm-2" for="description">Description</label>
+    <div class="col-sm-8">
+    <input  class="form-control" aria-rowcount="3" type="text"  id="description" name="description" value="{{ cuisinedata.description }}">
+    </div>
+    </div>
+    <div class="col-sm-10">
+    <input style="float: right"; type="submit" class="btn btn-sm btn-warning" value="Update">
+    </div>
+</form>
+</div>
+</body>
+</html>

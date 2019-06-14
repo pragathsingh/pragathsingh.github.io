@@ -1,0 +1,162 @@
+
+        .food_items{
+            border-width:2px;
+            border-style:solid;
+            border-color:lightgrey;
+            margin: 1px;
+        }
+        .item_name{
+            font-size: 19px;
+            text-decoration: none;
+        }
+        .mark{
+            width:22px;
+            height:22px;
+            margin: 2px;
+        }
+    .mrp{
+        margin: 1px;
+        font-size: 15px;
+    }
+    body{
+        background: whitesmoke;
+    }
+    #main-div{
+        background: whitesmoke;
+    }
+    .restaurant_name{
+        background:white;
+        text-decoration: none;
+        font-size:3vw;
+        font-family: Serif;
+        text-transform: capitalize  ;
+    }
+    .address{
+        font-size:1vw;
+        font-family: Serif;
+    }
+    #items{
+        background:white;
+        border: 1px solid #000;
+        width: 30%;
+        height: 30%;
+        border-radius: 7px;
+        margin: 15px;
+        padding: 10px;
+    }
+    #restaurant_name{
+        text-decoration: none;
+        font-size: 3vw;
+    }
+    .restaurant_info{
+        background:white;
+        border: 1px solid #000;
+        font-size:18px;
+        margin: 30px;
+        border-radius: 7px;
+        padding: 10px;
+    }
+    #restaurant_photo{
+        width: 100%;
+        height:200px;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+
+    }
+    .tick{
+        width: 15px;
+        height: 15px;
+    }
+    #head-info{
+        background:snow;
+        border: 1px solid #000;
+        font-size:18px;
+        margin: 30px;
+        border-radius: 7px;
+        padding: 10px;
+    }
+    #head-info img{
+        width: 200px;
+        height: 150px;
+        border-radius: 5%;
+    }
+
+    #review{
+        background: white;
+        border:1px solid gainsboro;
+        width: 120px;
+    }
+
+    #div-reviews{
+         background:white;
+        border: 1px solid #000;
+        font-size:18px;
+        margin: 30px;
+        border-radius: 7px;
+        padding: 10px;
+    }
+    #div-write-review{
+        background:white;
+        border: 1px solid #000;
+        font-size:18px;
+        margin: 30px;
+        border-radius: 7px;
+        padding: 10px;
+    }
+    #form-write-review{
+        width: 50%;
+    }
+    #write-review-text{
+        border: 1px solid gainsboro;
+        width: 100%;
+        height: 40px;
+        margin: 10px;
+    }
+    #write-review-button{
+        width: 150px;
+        margin: 10px;
+    }
+    .span-add-review{
+        border:1px solid lightgrey;
+        padding: 10px;
+        margin: 10px;
+        background: white;
+        border-radius: 5%;
+    }
+    #a-write-review-1{
+        text-decoration: none;
+        border: 1px solid grey;
+        background: white;
+        border-radius: 7%;
+        padding: 0px;
+        margin: 0px;
+    }
+    #a-write-review-2{
+        text-decoration: none;
+        border: 1px solid grey;
+        background: white;
+        border-radius: 7%;
+        padding: 2px;
+        margin: 5px;
+        width: 100px;
+    }
+    .restaurant_rating{
+        width: 100px;
+        float: right;
+        background: forestgreen;
+        border-radius: 7%;
+        padding: 5px;
+    }
+    #vote{
+        float:right;
+        font-size: 15px;
+        padding-right:22px
+    }
+    .reviews{
+        background:white;
+        border: 1px solid #000;
+        font-size:18px;
+        margin: 10px 10px 10px 30px;
+        border-radius: 7px;
+        padding: 10px;
+    }

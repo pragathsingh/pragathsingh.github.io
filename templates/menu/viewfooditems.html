@@ -1,0 +1,67 @@
+{% load staticfiles%}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hunger Zone</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static  'design/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static  'design/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'design/bootstrap-3.3.7-dist/jquery/jquery-3.3.1.min.js' %}"></script>
+    {% include 'restaurantheaderfiles.html' %}
+</head>
+<body>
+{% include 'restaurantheader.html' %}
+{% include 'restaurantsubheader.html' %}
+
+
+<div class="container">
+<center><h3>View All Food Items</h3></center>
+    <div class="col-sm-12" style="padding: 10px">
+        <a href="{% url 'addfooditempage' %}">
+            <button style="float: right" class="btn btn-sm btn-primary">
+                <b style="color: white">Add Food Item</b>
+            </button>
+        </a>
+    </div>
+    <table class="table" border="2px">
+        <thead>
+        <tr>
+            {% for head in heads %}
+                <th>{{ head }}</th>
+            {% endfor %}
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+    <tbody>
+        {% for item in fooditems %}
+            <form action="" method="post">
+            {% csrf_token %}
+            <tr>
+                <td>{{item.id}}</td>
+                <td>{{item.itemname}}</td>
+                <td>{{item.cuisinename}}</td>
+                <td>{{item.price}}</td>
+                <td>{{item.gst}}</td>
+                <td>{{item.mrp}}</td>
+                <td><img src="{% static item.photo %}" width="100" height="100"></td>
+                <td>{{item.status}}</td>
+                <td>{{item.category}}</td>
+                <td>{{item.mark}}</td>
+                <td><input type="submit" formaction="{% url 'updatefooditems' %}" class="btn btn-sm btn-warning" id="update" name="update" value="Update"></td>
+                <td><input type="submit" class="btn btn-sm btn-danger" id="delete" name="delete" value="Delete"></td>
+            </tr>
+            <input type="hidden" name="id" value="{{ item.id }}">
+            </form>
+        {% endfor %}
+    </tbody>
+    </table>
+</div>
+
+{% include 'restaurantfooter.html' %}
+</body>
+</html>

@@ -1,0 +1,94 @@
+{% load staticfiles%}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hunger Zone</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static  'design/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static  'design/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'design/bootstrap-3.3.7-dist/jquery/jquery-3.3.1.min.js' %}"></script>
+    {% include 'adminheaderfiles.html' %}
+</head>
+<body>
+{% include 'adminheader.html' %}
+{% include 'adminsubheader.html' %}
+
+<center style="margin: 20px;padding: 10px;">
+    <h3 style="margin-right: 230px">Add Admin</h3>
+  <form class="form-horizontal" action="{% url 'addadminaction' %}" method="post">
+      {% csrf_token %}
+    <div class="form-group">
+      <label class="control-label col-sm-3" for="username">Admin Name</label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" id="username" placeholder="Enter Username" name="username">
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label class="control-label col-sm-3" for="email">Email</label>
+      <div class="col-sm-4">
+        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-3" for="pwd">Password</label>
+      <div class="col-sm-4">
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+      </div>
+    </div>
+    <div class="form-group">
+    <label class="control-label col-sm-3" for="cpwd">Confirm Password</label>
+      <div class="col-sm-4">
+        <input type="password" class="form-control" id="cpwd" placeholder="Confirm password" name="cpwd">
+      </div>
+    </div>
+    <div class="form-group">
+    <label class="control-label col-sm-3" for="sel1">Admin Type</label>
+      <div class="col-sm-4">
+      <select class="form-control" id="admintype" name="admintype">
+        <option>admin</option>
+        <option>sub-admin</option>
+      </select>
+      </div>
+      </div>
+      <div class="form-group">
+          <label for="question" class="control-label col-sm-3">Security Quetions</label>
+          <div class="col-sm-4">
+              <select style="height: 20px;font-size: 10px" class="form-control" id="question" name="question">
+                <option >What is your first pet name ?</option>
+                <option>What is your favorite teacher name ?</option>
+                <option>Name Your Childhood nickname ?</option>
+                <option>What is your favorite song ?</option>
+              </select>
+          </div>
+      </div>
+      <div class="form-group">
+          <label class="control-label col-sm-3" for="answer">Your Answser</label>
+          <div class="col-sm-4">
+            <input type="text" class="form-control" id="answer" name="answer" placeholder="Write your answer here">
+          </div>
+      </div>
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-4">
+        <div class="checkbox">
+          <label><input type="checkbox" name="remember"> Remember me</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-5">
+        <button style="float:right" type="submit" class="btn btn-md btn-primary">Add</button>
+      </div>
+    </div>
+  </form>
+    </center>
+</div>
+
+{% include 'footer.html' %}
+</body>
+</html>

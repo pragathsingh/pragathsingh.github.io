@@ -1,0 +1,98 @@
+{% load staticfiles%}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hunger Zone</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static  'design/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static  'design/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'design/bootstrap-3.3.7-dist/jquery/jquery-3.3.1.min.js' %}"></script>
+    {% include 'adminheaderfiles.html' %}
+</head>
+<body>
+{% include 'adminheader.html' %}
+{% include 'adminsubheader.html' %}
+
+
+<div class="container">
+<center><h3>View All Admin</h3></center>
+
+    <div style="margin:10px;margin-left: 90%;"><a href="{% url 'adminaddpage' %}"><button class="btn btn-sm btn-primary">Add Admin</button></a></div>
+{% if request.session.ADMINTYPE == 'admin' %}
+    <table class="table" border="2px">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Email</th>
+
+            <th>Admin Type</th>
+            <th>Question</th>
+            <th>Answer</th>
+
+            <th>Update</th>
+            <th>Delete</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in data %}
+            <form action="" method="post">
+            {% csrf_token %}
+            <tr>
+                <td>{{ row.id }}</td>
+                <td>{{ row.username }}</td>
+                <td>{{ row.email }}</td>
+                <td>{{ row.admintype }}</td>
+                <td>{{ row.question }}</td>
+                <td>{{ row.answer }}</td>
+
+                <td><input formaction="{% url 'adminupdatepage' %}" class="btn btn-sm btn-warning" type="submit" value="Update"></td>
+                <td><input formaction="{% url 'admindelete' %}" class="btn btn-sm btn-danger" type="submit" value="Delete"></td>
+                <input type="hidden" value="{{ row.id }}" name="id">
+                <input type="hidden" value="{{ row.username }}" name="username">
+                <input type="hidden" value="{{ row.email }}" name="email">
+                <input type="hidden" value="{{ row.password }}" name="pwd">
+                <input type="hidden" value="{{ row.admintype }}" name="admintype">
+                <input type="hidden" value="{{ row.question }}" name="question">
+                <input type="hidden" value="{{ row.answer }}" name="answer">
+            </tr>
+            </form>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+</div>
+
+{% if request.session.ADMINTYPE == 'sub-admin' %}
+
+<table class="table" border="2px">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Admin Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in data %}
+            <tr>
+                <td>{{ row.id }}</td>
+                <td>{{ row.username }}</td>
+                <td>{{ row.email }}</td>
+                <td>{{ row.admintype }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+</div>
+
+{% include 'footer.html' %}
+</body>
+</html>

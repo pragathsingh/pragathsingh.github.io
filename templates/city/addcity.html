@@ -1,0 +1,48 @@
+{% load staticfiles%}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hunger Zone</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static  'design/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static  'design/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'design/bootstrap-3.3.7-dist/jquery/jquery-3.3.1.min.js' %}"></script>
+    {% include 'adminheaderfiles.html' %}
+</head>
+<body>
+
+{% include 'adminheader.html' %}
+{% include 'adminsubheader.html' %}
+
+<div class="container">
+    <h3 style="margin-left: 370px;">Add City</h3>
+    <center><br>
+<form class="form-horizontal" action="{% url 'addcityaction' %}" method="post" id="insert">
+    {% csrf_token %}
+
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="cityname">City Name</label>
+        <div class="col-sm-4">
+            <input  class="form-control col-sm-10" type="text" id="cityname" name="cityname">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="status">Status</label>
+        <div class="col-sm-4">
+            <input class="form-control col-sm-10" type="text"  id="status" name="status">
+        </div>
+    </div>
+
+      <div class="col-sm-7">
+        <input  style="float: right"  class="btn btn-sm btn-success" type="submit" value="Add City">
+    </div>
+</form>
+</center>
+</div>
+</body>
+</html>

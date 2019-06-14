@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Title{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {% block head %}{% endblock %}
+</head>
+<body>
+
+<nav class="nabar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <div class="navbar-brand">
+                <a href="">Hunger Zone</a>{% url 'index' %}
+            </div>
+            <u>
+                <li><a href="{% url 'adminview' %}">View Admin</a></li>
+                <li><a href="{% url 'adminaddpage' %}">Add Admin</a></li>
+                <li><a href="{% url '' %}">Update Admin</a></li>
+                <li><a href=""></a></li>
+            </u>
+        </div>
+    </div>
+</nav>
+
+{% block body %}{% endblock %}
+</body>
+</html>

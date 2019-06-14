@@ -1,0 +1,77 @@
+{% load staticfiles%}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hunger Zone</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static  'design/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static  'design/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'design/bootstrap-3.3.7-dist/jquery/jquery-3.3.1.min.js' %}"></script>
+    {% include 'adminheaderfiles.html' %}
+</head>
+<body>
+{% include 'adminheader.html' %}
+{% include 'adminsubheader.html' %}
+
+    {% if not userfound %}
+    <style>
+        .no-data-found{
+            background-repeat: no-repeat;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+        }
+    {% endif %}
+    </style>
+
+{% if not userfound %}
+<div class="no-data-found">
+    <img src="{% static 'images/no_data_found.png' %}" style="height: 100%; width: 100%;">
+</div>
+{% else %}
+<div class="container">
+    <center><h3>View All User</h3></center>
+    <table class="table" border="2">
+        <thead>
+            {% for head in heads %}
+                <th>{{ head }}</th>
+            {% endfor %}
+            <th>Update</th>
+            <th>Delete</th>
+        </thead>
+
+        <tbody>
+            {% for a in data  %}
+                <form action="" method="post">
+                {% csrf_token %}
+                <tr>
+                    <td>{{ a.id }}</td>
+                    <td>{{ a.name }}</td>
+                    <td>{{ a.email }}</td>
+                    <td>{{ a.password }}</td>
+                    <td>{{ a.mobileno }}</td>
+                    <td>{{ a.address }}</td>
+                    <td>{% if a.photo != 'None' %}<img src="{% static a.photo %}" width="150" height="150">{% endif %}</td>
+                    <td>{{ a.city }}</td>
+                    <td><input type="submit" formaction="{% url 'updateuserpage' %}" class="btn btn-sm  btn-primary" value="Update"></td>
+                    <td><input type="submit" formaction="{% url 'deleteuser' %}" class="btn btn-sm  btn-danger" value="Delete"></td>
+                    <input type="hidden" name="id" id="id" value="{{ a.id }}">
+                </tr>
+
+                </form>
+            {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+
+{% endif %}
+{% include 'footer.html' %}
+</body>
+</html>

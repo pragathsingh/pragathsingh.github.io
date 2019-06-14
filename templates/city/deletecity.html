@@ -1,0 +1,75 @@
+{% load staticfiles%}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hunger Zone</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static  'design/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static  'design/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'design/bootstrap-3.3.7-dist/jquery/jquery-3.3.1.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'design/css/deletecity.css' %}">
+    {% include 'adminheaderfiles.html' %}
+
+</head>
+<body>
+
+{% include 'adminheader.html' %}
+{% include 'adminsubheader.html' %}
+
+<div class="container">
+<h4 class="info-message">You are going to delete following city : </h4>
+
+<div class="container" style="float: contour">
+
+    <div class="col-sm-4">
+        <label class="" id="cityid">City ID</label>
+        <label class="" id="cityid">  {{ cityinfo.id }}</label>
+        <br>
+        <label class="" id="name">City Name</label>
+        <label class="" id="name">  {{ cityinfo.name }}</label>
+        <br>
+        <label class="" id="status">Status</label>
+        <label class="" id="status">  {{ cityinfo.status }}</label>
+    </div>
+
+</div>
+
+
+<center><h5 class="delete-message">*All following restaurants will be deleted if your press delete button
+            Be Sure that you want to remove your service in the {{ cityinfo.name }} </h5></center>
+    <table class="table" border="2px">
+        <thead>
+            <tr>
+                {% for head in heads %}
+                    <th>{{ head }}</th>
+                {% endfor %}
+           </tr>
+        </thead>
+        <tbody>
+            {% for restrow in restlist %}
+            <tr>
+                 <td>{{restrow.id}}</td>
+                 <td>{{restrow.restaurantname}}</td>
+                 <td>{{restrow.email}}</td>
+                 <td>{{restrow.password}}</td>
+                 <td>{{restrow.mobileno}}</td>
+                 <td>{{restrow.address}}</td>
+                 <td>{{restrow.ownername}}</td>
+                 <td>{{restrow.city}}</td>
+                 <td>{{restrow.status}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <form action="{% url 'deletecityaction' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-sm btn-danger" value="Delete City">
+        <input type="hidden" name="id" value="{{ cityinfo.id }}">
+    </form>
+</div>
+</body>
+</html>

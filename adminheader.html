@@ -1,0 +1,110 @@
+{% load staticfiles%}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Eatigo</title>
+
+
+    {% include 'headerfiles.html' %}
+    <link rel="stylesheet" type="text/css" href="{% static  'design/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static  'design/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'design/bootstrap-3.3.7-dist/jquery/jquery-3.3.1.min.js' %}"></script>
+    <style>
+        img{
+            width: 20px;
+            height: 20px;
+        }
+        hr{
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+{% include 'userheader.html' %}
+{% include 'usersubheader.html' %}
+
+
+<nav class="nabar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <div class="navbar-brand">
+                <a href="{% url 'index' %}">Eatigo</a>
+            </div>
+        </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{% url 'index' %}">Home</a></li>
+                <li>
+                    <div style="margin-left: 10px;margin-top:9px " class="search-container">
+                        <input type="text" placeholder="Search.." name="search" id="search">
+                        <button id="search-button"><span class="glyphicon glyphicon-search"></span></button>
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav">
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
+                    href="{% url 'adminview' %}">
+                    Admin<span class="carot"></span></a>
+                    <ul class="dropdown-menu">
+
+                        <li><a href="{% url 'adminview' %}">View Admin</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
+                    href="{% url 'viewrestaurant' %}">
+                    Restaurant<span class="carot"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'viewrestaurant' %}">View Restaurant</a></li>
+                        <li><a href="{% url 'addrestaurantpage' %}">Add Restaurant</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav">
+                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
+                    href="{% url 'viewcity' %}">
+                    City<span class="carot"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'viewcity' %}">View City</a></li>
+                        <li><a href="{% url 'addcitypage' %}">Add City</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown"><a id="welcome" class="dropdown-toggle" data-toggle="dropdown" href="/">
+                    <span class="carot"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'usershoworders' %}"><span class="glyphicon glyphicon-cutlery">&nbsp;</span>Orders</a></li>
+                        <li><a href="{% url 'cart' %}" id="reviews"><span class="glyphicon glyphicon-comment">&nbsp;</span>Reviews</a></li>
+                        <li><a href="{% url 'usersettingspage' %}" ><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;&nbsp;Settings</a></li>
+                        <li><a id="logout" href="/userlogoutaction"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;&nbsp;Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav">
+                 <li><a href="{% url 'viewcuisines' %}">Cuisines</a></li>
+                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
+                    href="{% url 'viewuserpage' %}">
+                    User<span class="carot"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'viewuserpage' %}">View User</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+
+            {% block navbar %}{% endblock %}
+
+    </div>
+</nav>
+
+{% block body %}{% endblock %}
+</body>
+</html>

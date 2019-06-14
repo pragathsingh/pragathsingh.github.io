@@ -1,0 +1,75 @@
+{% load staticfiles%}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hunger Zone</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static  'design/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static  'design/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'design/bootstrap-3.3.7-dist/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    {% include 'userheaderfiles.html' %}
+</head>
+<body>
+{% include 'userheader.html' %}
+{% include 'usersubheader.html' %}
+
+
+    <input id="token" value="{{ csrf_token }}" hidden="hidden">
+    <input id="order_id" value="{{ order_ids }}" hidden="hidden">
+    <div class="col-sm-12" style="margin: 20px;">
+{#    <div class="col-sm-3 details" >#}
+{#            <h4><b>Personal Details</b></h4>#}
+{#            {{ user.name }}<br>#}
+{#            {{ user.mobileno }}<br>#}
+{#            {{ user.email }}<br>#}
+{#            <h4><b>Delivery Details</b></h4>#}
+{#            {{ user.address }}#}
+{#        </div>#}
+
+    {% for order in orders %}
+        <span style="margin-right: 200px;" id="order_status">
+            {% if order.orderstatus == 'not-accepted' %}<h2>Order request Pending.......</h2>{% endif %}<br>
+            {% if order.orderstatus == 'accepted' %}<h3>Your Order has been Accepted</h3>{% endif %}<br>
+        </span>
+
+        <span  id="order_delivery" style="margin-left: 100px;">
+        {% if order.delvierystatus == 'out-for-delivery' %}<h4>Out for delivery</h4>{% endif %}<br>
+        </span>
+
+        <span id="order_payment">
+        {% if order.paymentstatus == 'not-paid'%}<h3 style="margin-left: 470px;">&#8377;{{ order.amount }} Amount Pending</h3>{% endif %}<br>
+        </span>
+
+        <table class="table">
+            <thead>
+                <th>Id</th>
+                <th>Order Status</th>
+                <th>Delivery Status</th>
+                <th>Payment Status</th>
+                <th>Restaurant</th>
+                <th>Restaurant Address</th>
+                <th>Total Amount</th>
+            </thead>
+            <tbody>
+                <td>{{ order.order_id }}</td>
+                <td>{{ order.orderstatus }}</td>
+                <td>{{ order.deliverystatus }}</td>
+                <td>{{ order.paymentstatus }}</td>
+                <td>{{ order.restaurantname }}</td>
+                <td>{{ order.restaurantaddress }}</td>
+                <td>{{ order.amount }}</td>
+            </tbody>
+        </table>
+
+    {% endfor %}
+
+
+
+    </div>
+</body>
+</html>

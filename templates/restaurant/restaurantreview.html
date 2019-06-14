@@ -1,0 +1,59 @@
+{% extends 'restaurantheader.html' %}
+{% load  staticfiles %}
+{% block title %}{{ restaurant.restaurantname }}{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'design/css/restaurantinfo.css' %}">
+
+    <script src="{% static 'js/restaurantinfo.js' %}"></script>
+{% endblock %}
+{% block bodyattributes %}{% endblock %}
+{% block navbar %}{% endblock %}
+{% block body %}
+<div id="main-div">
+
+    <div id="head-info" class="col-sm-7">
+        <a target="_blank" href="{% static request.session.RESTAURANTPHOTO %}"><img src="{% static request.session.RESTAURANTPHOTO %}"></a><br>
+        <a href="" id="restaurant_name">{{ restaurant.restaurant_name }}</a>
+
+        <div class="restaurant_rating">
+            <center>
+                <span style="font-size: 27px;color: white;"><b>{{ rating }}</b></span>
+                <span style="font-size: 20px;color: darkseagreen"><b>/5</b></span>
+            </center>
+        </div>
+        <div>
+            <span id="vote">{{ votes }} votes</span>
+        </div>
+        <br>
+        <br>
+        <hr>
+
+          <br><br>
+    </div>
+
+    </div>
+     <div class="col-sm-5" id="items" >
+        {% for item in food_items %}
+            {{ item }}<br>
+        {% endfor %}
+    </div>
+
+    <div class="col-sm-7" id="div-reviews">
+        <h4>Reviews</h4>
+    </div>
+
+        {% for review in all_reviews %}
+            <div class="col-sm-7 reviews">
+                <img href="" class="review-photo" src="{% static review.photo %}" width="70px" height="70px" style="border-radius: 50%">
+                <a href="" style="text-decoration: none"><b>{{ review.name }}</b></a><br>
+                {{ review.datetime }}<br>
+                <b>Rated</b><span style="background:#a8f2ff;font-size:15px;margin:5px;padding:2px;border:1px solid green;border-radius: 30%;">{{ review.rating }}</span>
+
+                <p>{{ review.review }}</p>
+            </div>
+        {% endfor %}
+
+</div>
+
+{% endblock %}

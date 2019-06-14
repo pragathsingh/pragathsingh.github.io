@@ -1,0 +1,85 @@
+{% load staticfiles%}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hunger Zone</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static  'design/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static  'design/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'design/bootstrap-3.3.7-dist/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/cart.js ' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'design/css/cart.css' %}">
+    {% include 'userheaderfiles.html' %}
+</head>
+<body>
+{% include 'userheader.html' %}
+{% include 'usersubheader.html' %}
+
+    <input id="amounts" hidden="hidden" value="{{ request.session.CARTAMOUNTS }}">
+    <input id="token" value="{{ csrf_token }}" hidden="hidden">
+<div class="container">
+    {% if cart_items %}
+        <h3>Cart</h3>
+    <div class="col-lg-12" id="main_div">
+
+        <div class="cart-items" id="all-cart-items">
+
+{#           <span style="float: right;"><h4>Quantity</h4></span>#}
+{#           <span style="float: right;"><h4>Price</h4></span>#}
+
+{#            <span style="float: right;">Price</span>#}
+            <span style="float: right;">Amount</span>
+            <span style="float: right;margin-right:370px ">Quantity</span>
+            <span style="float: right;margin-right:100px ">Price</span>
+            <hr>
+            {% for item in cart_items %}
+            <div id="{{ item.id }}-item-id" class="cart_items" >
+
+                <div>
+                     {% if item.mark == 'veg' %}
+                        <img src="{% static 'design/images/veg_mark.png' %}" class="mark">
+                     {% else %}
+                        <img src="{% static 'design/images/non-veg_mark.png' %}" class="mark">
+                     {% endif %}
+
+                     <a href="" class="item_name" style="font-size: 25px">{{ item.name }}</a>
+                     <input id="{{ item.id }}-item-amount" value="{{ item.amount }}" hidden="hidden">
+
+                </div>
+
+                <p class="mrp"><span style="margin-left: 460px;">{{ item.mrp }}</span>
+                    <span style="margin-left: 50px">x</span>
+                    <span style="margin-left: 65px">{{ item.qty }}</span>
+                    <span style="float:right;">&#8377;{{ item.amount }}</span></p>
+                 <button id="{{ item.id }}-remove-item-button" class="btn btn-sm remove-item">delete</button>
+            </div>
+        {% endfor %}
+            <hr style="color: snow">
+            <div>
+                Subtotal<span style="float: right">&#8377;<input style="border:none;width: 30px" value="" id="subtotal" readonly></span>
+
+            </div>
+            <button id="pay" onclick="place_order()" class="btn btn-md btn-success">Place Order</button>
+            <button id="remove-all-items" class="btn btn-md btn-danger">Remove All Items</button>
+
+        </div>
+
+        {% else %}
+            <div>
+                <center>
+                    <h3>There is no item in your cart</h3>
+                </center>
+            </div>
+
+        {% endif %}
+
+
+    </div>
+</div>
+{% include 'userfooter.html' %}
+</body>
+</html>

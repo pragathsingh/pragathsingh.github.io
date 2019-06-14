@@ -1,0 +1,108 @@
+{% load staticfiles%}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hunger Zone</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static  'design/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static  'design/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'design/bootstrap-3.3.7-dist/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/restaurantsettings.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'design/css/restaurantsettings.css' %}">
+    {% include 'restaurantheaderfiles.html' %}
+</head>
+<body>
+{% include 'restaurantheader.html' %}
+{% include 'restaurantsubheader.html' %}
+
+
+<div class="container">
+
+  <div class="col-sm-8" id="restaurant-name-photo">
+      <center><img src="{% static restaurant.photo %}">
+        <span id="restaurant-name">{{ restaurant.restaurantname }}</span>
+        <span class="glyphicon glyphicon-map-marker"></span>
+      </center>
+  </div>
+
+
+    <div style="min-width: 300px;margin-left:200px;display: block" class="col-sm-12">
+
+    <form class="form-horizontal col-sm-3" action="restaurantchangephoto" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div name="form-group">
+            <label for="photo" class="control-label">Restaurant Photo</label>
+            <div>
+                <img src="{% static restaurant.photo %}" width="200px" height="200px">
+                <input type="file" id="photo" name="photo" accept="image/jpg image/png">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 ">
+                <button style="float:left" type="submit" class="btn btn-md btn-success">Change Photo</button>
+            </div>
+        </div>
+
+    </form>
+
+<div class="main-form " >
+  <form class="col-sm-12" action="{% url 'restaurantsettingsaction' %}" method="post">
+    {% csrf_token %}
+      <div class="form-group">
+      <label class="control-label" for="restaurantname">Restaurant Name</label>
+      <div>
+        <input type="text" class="form-control" id="restaurantname"  name="restaurantname" placeholder="Enter Restaurant Name" value="{{ restaurant.restaurantname }}">
+      </div>
+    </div>
+
+    <div class="form-group">
+    <label class="control-label" for="mobileno">Mobile No</label>
+      <div>
+        <input type="number" class="form-control" id="mobileno" name="mobileno" placeholder="Mobile" value="{{ restaurant.mobileno }}">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label" for="address">Address</label>
+      <div >
+            <input class="form-control" type="text" name="address" id="address" placeholder="Address Goes here" value="{{ restaurant.address }}">
+        </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label"  for="city">City</label>
+      <div >
+        <select class="form-control" id ="city" name="city" disabled>
+            <option selected="selected">{{ restaurant.city }}</option>
+
+        </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label" for="email">Email</label>
+      <div>
+        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="{{ restaurant.email }}" disabled>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 ">
+        <button style="float:right" type="submit" class="btn btn-md btn-success">Update</button>
+      </div>
+    </div>
+  </form>
+
+        </div>
+    </div>
+
+</div>
+
+{% include 'restaurantfooter.html' %}
+</body>
+</html>

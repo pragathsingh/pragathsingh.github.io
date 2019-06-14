@@ -1,0 +1,106 @@
+<header>
+		<nav class="navbar navbar-expand-lg navbar-light py-4">
+			<div class="container">
+				<h1>
+					<a class="navbar-brand" href="/">
+						<i class="fas fa-utensils"></i>Hunger Zone
+					</a>
+				</h1>
+				<button class="navbar-toggler ml-md-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+				    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+					<ul class="navbar-nav mx-auto text-center">
+						<li class="nav-item active">
+							<a class="nav-link" href="/">Home
+								<span class="sr-only">(current)</span>
+							</a>
+						</li>
+
+
+                     <li class="nav-item">
+							<a class="nav-link " href="{% url 'showsales' %}">Show Sale</a>
+                     </li>
+
+                    {% if request.session.ADMINTYPE == 'sub-admin' %}
+
+                        <li class="nav-item  dropdown" style="margin-left: 30px;">
+							<a class="nav-link  dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+							    aria-haspopup="true" aria-expanded="false">
+                            Admin
+							</a>
+							<div class="dropdown-menu text-lg-left text-center" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'adminview' %}">View Admin</a>
+                            </div>
+                        </li>
+                    {% else %}
+
+                        <li class="nav-item  dropdown" style="margin-left: 30px;">
+							<a class="nav-link  dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+							    aria-haspopup="true" aria-expanded="false">
+                            Admin
+							</a>
+							<div class="dropdown-menu text-lg-left text-center" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item " href="{% url 'adminaddpage' %}">Add Admin</a>
+                            <a class="dropdown-item" href="{% url 'adminview' %}">View Admin</a>
+                            </div>
+                        </li>
+
+                    {% endif %}
+
+
+                        <li class="nav-item  dropdown" style="margin-left: 100px;">
+							<a class="nav-link  dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+							    aria-haspopup="true" aria-expanded="false">
+                            Restaurants
+							</a>
+							<div class="dropdown-menu text-lg-left text-center" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item " href="{% url 'viewrestaurant' %}">View Restaurants</a>
+                                <a class="dropdown-item" href="{% url 'addrestaurantpage' %}">Add Restaurant</a>
+                            </div>
+                         </li>
+
+
+                        <li class="nav-item  dropdown" style="margin-left: 30px;">
+							<a class="nav-link  dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+							    aria-haspopup="true" aria-expanded="false">
+                            City
+							</a>
+							<div class="dropdown-menu text-lg-left text-center" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item " href="{% url 'addcitypage' %}">Add City</a>
+                            <a class="dropdown-item" href="{% url 'viewcity' %}">View City</a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item">
+							<a class="nav-link " href="{% url 'adminapproverestaurantpage' %}">{{ request.session.RESTAURANTSPENDING }} Restaurnants Approval Pending </a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link " href="{% url 'viewuserpage' %}">User</a>
+						</li>
+
+                        <li class="nav-item  dropdown" style="margin-left: 150px;">
+							<a class="nav-link  dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+							    aria-haspopup="true" aria-expanded="false">
+                                Hi {{ request.session.ADMINNAME }}
+							</a>
+							<div class="dropdown-menu text-lg-left text-center" aria-labelledby="navbarDropdown">
+
+                                <a class="dropdown-item " href="{% url 'adminsettingspage' %}"><span style="margin-right: 7px;" class="glyphicon glyphicon-cog"></span>Settings</a>
+{#								<a class="dropdown-item " href="{% url  %}">Settings</a>#}
+								<div class="dropdown-divider"></div>
+								<a id="logout" class="dropdown-item" href="{% url 'adminlogoutaction' %}"><span style="margin-right: 6px;" class="glyphicon glyphicon-log-out"></span>Logout</a>
+							</div>
+						</li>
+
+					</ul>
+
+				</div>
+			</div>
+		</nav>
+</header>
+<input id="token" hidden="hidden" value="{{ csrf_token }}">

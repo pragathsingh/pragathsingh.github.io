@@ -1,0 +1,138 @@
+{% load staticfiles %}
+<!-- footer -->
+
+    <footer class="pt-5" style="background: none;">
+		<!-- copyright -->
+		<div class="copy_right">
+			<p class="text-center text-white py-sm-4 py-3">© 2018 Eatigo. All rights reserved | Design by
+			Pragath Singh , Abhishek Gupta , Sakshi Sharma  and Abhijit Sood
+			</p>
+
+		</div>
+		<!-- //copyright -->
+	</footer>
+
+<!-- //footer -->
+
+
+	<!-- Js files -->
+
+	<!-- Default-JavaScript-File -->
+
+	<!-- banner slider -->
+	<script src="{% static 'web/js/responsiveslides.min.js' %}"></script>
+	<script>
+		// You can also use "$(window).load(function() {"
+		$(function () {
+			// Slideshow 4
+			$("#slider3").responsiveSlides({
+				auto: true,
+				pager: true,
+				nav: false,
+				speed: 500,
+				namespace: "callbacks",
+				before: function () {
+					$('.events').append("<li>before event fired.</li>");
+				},
+				after: function () {
+					$('.events').append("<li>after event fired.</li>");
+				}
+			});
+
+		});
+	</script>
+	<!-- //banner slider -->
+
+	<!-- password-script -->
+	<script>
+		window.onload = function () {
+			document.getElementById("password1").onchange = validatePassword;
+			document.getElementById("password2").onchange = validatePassword;
+		}
+
+		function validatePassword() {
+			var pass2 = document.getElementById("password2").value;
+			var pass1 = document.getElementById("password1").value;
+			if (pass1 != pass2)
+				document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+			else
+				document.getElementById("password2").setCustomValidity('');
+			//empty string means no validation error
+		}
+	</script>
+	<!-- //password-script -->
+
+	<!-- gallery light box -->
+	<script src="{% static 'web/js/smoothbox.jquery2.js' %}"></script>
+	<!-- //gallery light box -->
+
+	<!-- smooth scrolling -->
+	<script src="{% static 'web/js/SmoothScroll.min.js' %}"></script>
+	<!-- //smooth scrolling -->
+
+	<!-- move-top -->
+	<script src="{% static 'web/js/move-top.js' %}"></script>
+	<!-- easing -->
+	<script src="{% static 'web/js/easing.js' %}"></script>
+	<!--  necessary snippets for few javascript files -->
+	<script src="{% static 'web/js/snacks.js' %}"></script>
+
+	<script src="{% static 'web/js/bootstrap.js' %}"></script>
+	<!-- Necessary-JavaScript-File-For-Bootstrap -->
+	<!-- //Js files -->
+<!-- Modal 1-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="register-form">
+                    <form action="#" method="post">
+                        <div class="fields-grid">
+                            <div class="styled-input">
+                                <input type="text" placeholder="Your Name" name="Your Name" required="">
+                            </div>
+                            <div class="styled-input">
+                                <input type="email" placeholder="Your Email" name="Your Email" required="">
+                            </div>
+                            <div class="styled-input">
+                                <input type="password" placeholder="password" name="password" required="">
+                            </div>
+                            <button type="submit" class="btn subscrib-btnn">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //Modal 1-->
+
+{#      Cart Modal    #}
+
+<div role="dialog" class="modal fade" id="cartmodal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <br><br>
+                <h3 class="text-center">1 Item Added to Cart Successfully</h3>
+                <br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="close">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{#      Cart Modal    #}

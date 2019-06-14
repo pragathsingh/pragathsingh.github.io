@@ -1,0 +1,77 @@
+{% load staticfiles%}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hunger Zone</title>
+
+
+    {% include 'adminheaderfiles.html' %}
+    <link rel="stylesheet" type="text/css" href="{% static  'design/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static  'design/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'design/bootstrap-3.3.7-dist/jquery/jquery-3.3.1.min.js' %}"></script>
+
+</head>
+<body>
+{% include 'adminheader.html' %}
+{% include 'adminsubheader.html' %}
+
+<div class="container">
+<center><h3>View All Restaurants</h3></center>
+    <div class="col-sm-12" style="padding: 10px">
+        <button style="float: right" class="btn btn-sm btn-primary">
+            <a href="{% url 'addrestaurantpage' %}"><b style="color: white">Add Restaurant</b></a>
+        </button>
+    </div>
+    <table class="table" border="2px">
+        <thead>
+        <tr>
+            {% for head in heads %}
+                <th>{{ head }}</th>
+            {% endfor %}
+            <td>Update</td>
+            <td>Delete</td>
+        </tr>
+        </thead>
+    <tbody>
+        {% for a in data %}
+            <form action="{% url 'viewrestaurant' %}" method="post">
+            {% csrf_token %}
+            <tr>
+                <td>{{a.id}}</td>
+                <td id="{{ a.restaurantname }}">{{a.restaurantname}}</td>
+                <td>{{a.email}}</td>
+                <td>{{a.password}}</td>
+                <td>{{a.mobileno}}</td>
+                <td>{{a.address}}</td>
+                <td>{{a.ownername}}</td>
+                <td>{{a.city}}</td>
+                {% if a.status == 'Not Approved' %}
+                    <td>
+                        <input type="submit" formaction="{% url 'adminapproverestaurant' %}" value="Approve" class="btn btn-sm btn-primary">
+                    </td>
+                {% else %}
+                    <td>
+                        <input type="submit" formaction="{% url 'adminrevokerestaurantapproval' %}" value="Revoke Approval" class="btn btn-sm btn-warning">
+                    </td>
+                {% endif %}
+
+                <td>{% if a.photo != 'None' %} <img src="{% static a.photo %}" width="150" height="150"> {% endif %}</td>
+                <td>
+                    <input type="submit" formaction="{% url 'updaterestaurantpage' %}" value="Update" class="btn btn-sm btn-warning">
+                </td>
+                <td>
+                    <input type="submit" formaction="{% url 'deleterestaurant' %}" value="Delete" class="btn btn-sm btn-danger">
+                </td>
+            </tr>
+            <input type="hidden" name="id" value="{{ a.id }}">
+            </form>
+        {% endfor %}
+    </tbody>
+    </table>
+</div>
+</body>
+</html>

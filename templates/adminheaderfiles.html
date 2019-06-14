@@ -1,0 +1,99 @@
+{% load staticfiles %}
+ <link rel="shortcut icon" href="{% static 'images/eatigo_logo.jpg' %}">
+<script src="{% static 'js/adminheader.js' %}"></script>
+<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<!--// Meta tag Keywords -->
+
+	<!-- Custom-Files -->
+	<link rel="stylesheet" href="{% static 'web/css/bootstrap.css' %}">
+	<!-- Bootstrap-Core-CSS -->
+	<link rel="stylesheet" href="{% static 'web/css/smoothbox.css' %}" type='text/css' media="all" />
+	<!-- gallery light box -->
+	<link rel="stylesheet" href="{% static 'web/css/style.css' %}" type="text/css" media="all" />
+	<!-- Style-CSS -->
+	<link rel="stylesheet" href="{% static 'web/css/fontawesome-all.css' %}">
+	<!-- Font-Awesome-Icons-CSS -->
+	<!-- //Custom-Files -->
+
+	<!-- Web-Fonts -->
+	<link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext"
+	    rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=latin-ext"
+	    rel="stylesheet">
+	<!-- //Web-Fonts -->
+
+<!-- JavaScript -->
+	<script src="{% static 'web/js/jquery-2.2.3.min.js' %}"></script>
+
+<style>
+    input[type="email"],input[type="text"],  input[type="password"], .creditly-wrapper .form-control {
+    display: block;
+    width: 95.5%;
+    padding: 15px 10px;
+    font-size: 14px;
+    color: #212121;
+    background: #fff;
+    border: 1px solid #e7e7e7;
+    margin-bottom: 25px;
+    outline: none;
+}
+    .error
+    {
+        color:red;
+        font-size:12px;
+        font-weight: normal;
+        margin-top:0px;
+        margin-bottom: 5px;
+    }
+    .add_edit_data
+    {
+        display: block;
+    position: relative;
+    padding: 11px 30px;
+    letter-spacing: 1px;
+    background: #212121;
+    font-size: 1em;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    text-transform: uppercase;
+    cursor: pointer;
+    }
+    .mydata
+    {
+        border: 1px solid #ccc;
+        padding:10px;
+        margin:10px 0px;
+    }
+    .mydata:hover
+    {
+        box-shadow:2px 2px 10px #000;
+        cursor: pointer;
+    }
+    .itemname,.price
+    {
+        color:#ea1d5d;
+    }
+    .mypara
+    {
+        font-size:12px;
+    }
+    .itemname:hover
+    {
+        text-decoration: underline;
+    }
+</style>

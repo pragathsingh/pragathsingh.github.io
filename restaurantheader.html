@@ -1,0 +1,77 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="{% static 'images/eatigo_logo.jpg' %}">
+    <meta charset="UTF-8">
+    <title>{% block title %}{{ request.session.RESTAURANTNAME }}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static  'design/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static  'design/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'design/bootstrap-3.3.7-dist/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/restaurantheader.js' %}"></script>
+
+    <style>
+        .container-fluid{
+            font-size: 17px;
+            padding: 3px;
+        }
+    </style>
+
+    {% block head %}{% endblock %}
+</head>
+<body {% block bodyattributes %}{% endblock %} onload="HomePageOnLoad()">
+<input id="photo" value="{{ request.session.RESTAURANTPHOTO }}" type="hidden">
+<input id="username" value="{{ request.session.RESTAURANTNAME }}" type="hidden">
+<input id="token" value="{{ csrf_token }}" type="hidden">
+<input id="order_ids" value="{{ order_ids }}" hidden="hidden">
+
+<nav class="nabar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <div class="navbar-brand">
+                <a href="{% url 'index' %}">Eatigo</a>
+            </div>
+        </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{% url 'index' %}"><span class="glyphicon glyphicon-home">&nbsp;</span>Home</a></li>
+                <li>
+                    <div style="margin-left: 10px;margin-top:9px " class="search-container">
+                        <input type="text" placeholder="Search.." name="search" id="search">
+                        <button id="search-button"><span class="glyphicon glyphicon-search"></span></button>
+                    </div>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav">
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
+                    href="{% url 'viewcity' %}">
+                    Food Items<span class="carot"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'restaurantviewfooditems' %}">View Food Items</a></li>
+                        <li><a href="{% url 'addfooditempage' %}">Add Food Items</a></li>
+                    </ul>
+            </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown"><a id="welcome" class="dropdown-toggle" data-toggle="dropdown" href="/">
+                    <span class="carot"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'usershoworders' %}"><span class="glyphicon glyphicon-cutlery">&nbsp;</span>Orders</a></li>
+                        <li><a href="{% url 'cart' %}" id="show_cart"><span class="glyphicon glyphicon-shopping-cart">&nbsp;</span>Cart</a></li>
+                        <li><a href="{% url 'restaurantshowreviews' %}" id="reviews"><span class="glyphicon glyphicon-comment">&nbsp;</span>Reviews</a></li>
+                        <li><a href="{% url 'restaurantchangepasswordpage' %}" id="reviews"><span class="glyphicon glyphicon-lock">&nbsp;</span>Change Password</a></li>
+                        <li><a href="{% url 'restaurantsettingspage' %}" ><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;&nbsp;Settings</a></li>
+                        <li><a id="logout" href="/restaurantlogout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;&nbsp;Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            {% block navbar %}{% endblock %}
+
+    </div>
+</nav>
+
+{% block body %}{% endblock %}
+</body>
+</html>

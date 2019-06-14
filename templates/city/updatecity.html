@@ -1,0 +1,51 @@
+{% load staticfiles%}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hunger Zone</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static  'design/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static  'design/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'design/bootstrap-3.3.7-dist/jquery/jquery-3.3.1.min.js' %}"></script>
+    {% include 'adminheaderfiles.html' %}
+
+</head>
+<body>
+
+{% include 'adminheader.html' %}
+{% include 'adminsubheader.html' %}
+
+<div class="container" style="margin: 20px;padding: 20px;">
+    <center><h3>Update City</h3></center>
+<form class="form-horizontal" action="{% url 'updatecityaction' %}" method="post" id="insert" >
+    {% csrf_token %}
+
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="cityname">City Name</label>
+        <div class="col-sm-4">
+            <input  class="form-control col-sm-10" type="text" id="cityname" name="cityname" value="{{ data.cityname }}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="status">Status</label>
+        <div class="col-sm-4">
+            <input class="form-control col-sm-10" type="text"  id="status" name="status" value="{{ data.status }}">
+        </div>
+    </div>
+
+      <div class="col-sm-7">
+        <input  style="float: right"  class="btn btn-sm btn-primary" type="submit" value="Update">
+    </div>
+
+    <input  type="hidden" id="id" name="id" value="{{ data.id }}">
+
+</form>
+
+</div>
+</body>
+</html>

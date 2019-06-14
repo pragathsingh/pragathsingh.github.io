@@ -1,0 +1,71 @@
+{% load staticfiles%}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hunger Zone</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static  'design/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static  'design/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'design/bootstrap-3.3.7-dist/jquery/jquery-3.3.1.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'design/css/restaurantssearch.css' %}">
+    {% include 'userheaderfiles.html' %}
+
+</head>
+<body>
+{% include 'userheader.html' %}
+{% include 'usersubheader.html' %}
+
+<div class="container" style="margin: 10px">
+    <div style="margin-left: 400px;padding: 10px">
+        <img hidden="hidden" src="{% static 'images/french_fries.jpg' %}" style="max-width: 400px;transform:translate(30,30);transform: rotate(-90deg);min-width: 300px;min-height: 300px;">
+    </div>
+    {% if restaurants %}
+        <div class="row">
+        {% for restaurant in restaurants %}
+            <div class="col-lg-4 restaurant_info">
+            <div style="background: white;width: 362px;border: 1px solid lightgrey;">
+            <div class="rating-div" style="
+                    {% if restaurant.rating >= 4.5  %} background: #29a85b ;
+                    {% elif restaurant.rating < 4.5 and  restaurant.rating >= 4.0 %}
+                        background: #14bd57;
+                    {% elif restaurant.rating < 4.0 and restaurant.rating >= 3.0 %}
+                        background: yellowgreen;
+                    {% elif restaurant.rating < 3.0 and restaurant.rating > 2.0 %}
+                        background: yellowgreen;
+                    {% elif restaurant.rating < 2.0 and  restaurant.rating >= 1.0 %}
+                        background: yellowgreen;
+                    {% elif restaurant.rating < 1.0 and  restaurant.rating > 0.1 %}
+                        background: yellow;
+                    {% else %}
+                        background: red;
+                    {% endif %}">
+                <b style="color: white;font-size: 15px">{{ restaurant.rating }}</b>
+            </div>
+                <a  href="/restaurantorderpage/{{ restaurant.cityname }}/{{ restaurant.restaurantname }}" style="background-color: white">
+                    <img src="{% static restaurant.photo %}">
+                    <div style="background: white;padding: 10px;">
+                        <h4 style="font-size: 22px;"><b>{{ restaurant.restaurantname }}</b></h4>
+                    <div >
+                        {{ restaurant.address }}<br>
+                    </div>
+                    </div>
+                </a>
+            <div style="background: white">
+                {% for category in restaurant.categories %}
+                {{ category }}
+            {% endfor %}
+            </div>
+
+            </div>
+            </div>
+        {% endfor %}
+        </div>
+    {% endif %}
+</div>
+
+
+{% include 'userfooter.html' %}

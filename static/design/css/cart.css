@@ -1,0 +1,46 @@
+.payment_method{
+    border: 1px solid lightgray;
+    margin: 5px;
+    padding: 5px;
+}
+.col-sm-12{
+    background: snow;
+    min-height: 700px;
+}
+
+.payment_method input{
+    margin: 4px;
+    padding: 4px;
+}
+
+.details{
+    min-height: 100px;
+    border: 1px solid lightgray;
+    margin: 5px;
+    padding: 5px;
+    float:right;
+}
+
+.cart-items{
+    min-height: 200px;
+    border: 1px solid lightgray;
+    margin: 10px;
+    padding: 10px;
+
+}
+.mark{
+    width:22px;
+    height:22px;
+    margin: 2px;
+}
+.col-sm-7{
+    background: white;
+}
+.col-sm-3{
+    background: white;
+}
+.remove-item{
+    margin-left: 30px;
+    height: 25px;
+
+}

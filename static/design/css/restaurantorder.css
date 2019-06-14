@@ -1,0 +1,59 @@
+.food_items{
+    border-width:2px;
+    border-style:solid;
+    border-color:lightgrey;
+    margin: 1px;
+}
+.item_name{
+    font-size: 19px;
+    text-decoration: none;
+}
+.mark{
+    width:22px;
+    height:22px;
+    margin: 2px;
+}
+.mrp{
+    margin: 1px;
+    font-size: 15px;
+}
+.restaurant_name{
+    font-size:2vw;
+    font-family: Serif;
+    text-transform: capitalize  ;
+}
+.address{
+    font-size:1vw;
+    font-family: Serif;
+}
+.restaurant_info{
+    margin: 15px;
+}
+.restaurant_photo{
+    width: 100%;
+    height: 100%;
+}
+#order-div{
+    min-height: 60vh;
+    border: 1px solid lightgrey;
+}
+.add-item{
+    margin: 6px;
+    padding: 2px;
+    float: right;
+    height: 25px;
+    font-size: 14px;
+}
+.cart-items{
+    margin: 5px;
+    padding: 5px;
+}
+.cart-add-subtract{
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+

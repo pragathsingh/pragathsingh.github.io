@@ -1,0 +1,57 @@
+{% load staticfiles%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cuisines</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'design/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static 'design/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+</head>
+<br>
+<center><div >
+<h3 style="">View All Cuisines</h3>
+</div></center>
+<div class="col-sm-10" style="padding: 20px">
+
+<div style="align-self: end;padding:20px">
+    <a style="float: right"; href="insertcuisinepage"><button type="button" class="btn btn-sm btn-primary">
+        Insert</button></a>
+</div><br>
+    <table class="table" border="2">
+    {% if cuisines %}
+        <thead>
+            <tr>
+            <th>Id</th>
+            <th>Cuisine Name</th>
+                <th>Description</th>
+            <th>Update</th>
+            <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cuisine in cuisines %}
+            <form action="" method="post">
+            {% csrf_token %}
+            <tr>
+                <td>{{cuisine.id }}</td>
+                <td>{{cuisine.cuisinename }}</td>
+                <td>{{cuisine.description }}</td>
+                <input name="id" type="hidden" value="{{ cuisine.id }}">
+                <input name="cuisinename" type="hidden" value="{{ cuisine.cuisinename }}">
+                <input name="description" type="hidden" value="{{ cuisine.description }}">
+
+                <td><input type="submit" formaction="{% url 'updatecusinepage' %}" class="btn btn-sm btn-warning" value="Update"></td>
+                <td><input type="submit" formaction="{% url 'deletecuisine' %}" class="btn btn-sm btn-danger" value="Delete">
+                </td>
+            </tr>
+            </form>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+
+</div>
+
+</body>
+</html>

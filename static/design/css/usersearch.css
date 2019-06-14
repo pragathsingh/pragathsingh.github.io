@@ -1,0 +1,32 @@
+body{
+    background-color: whitesmoke;
+}
+ .restaurant_info img{
+    height: 50%;
+    width: 100%;
+    border-radius: 3%;
+
+}
+.restaurant_info{
+    max-height: 250px;
+}
+.food-items{
+    margin: 5px;
+    padding: 1px;
+}
+  .mark{
+    height: 22px;
+    width: 22px;
+    margin: 1px;
+}
+.food-items-image{
+    min-width: 35%;
+    max-width: 35%;
+    min-height: 100px;
+    max-height: 100px;
+    border-radius: 3%;
+    float: left;
+}
+.restaurant_info_text{
+    margin-left: 30px;
+}

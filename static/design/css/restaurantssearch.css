@@ -1,0 +1,32 @@
+body{
+    background-color: whitesmoke;
+}
+.restaurant_info img{
+    min-height: 170px;
+    min-width: 360px;
+    max-height: 170px;
+    max-width: 360px;
+    border-radius: 3%;
+    border: 1px solid lightgrey;
+}
+.restaurant_info{
+    max-height: 300px;
+    margin: auto;
+    padding: auto;
+}
+.mark{
+    height: 22px;
+    width: 22px;
+    margin: 1px;
+}
+
+.rating-div{
+    padding: 5px;
+    margin-left: 87.3%;
+    border-radius:10%;
+    background: green;
+    width: 30px;
+    height: 30px;
+    z-index: 1;
+    position: absolute;
+}

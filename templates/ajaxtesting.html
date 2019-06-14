@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block head %}
+
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static  'design/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static  'design/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+             $("#username").bind('propertychange change  paste input',function () {
+               validation();
+           });
+             $("#password").bind('propertychange change  paste input',function () {
+               validation();
+           });
+             $("#email").bind('propertychange change  paste input',function () {
+               validation();
+           });
+            function validation()
+            {
+                var name = $("#username").val();
+                var email = $("#email").val();
+                var password = $("#password").val();
+
+                    document.getElementById("error-username").innerText = ar["e-name"];
+                    document.getElementById("error-password").innerHTML = ar["e-password"];
+                    document.getElementById("error-email").innerHTML = ar["e-email"];
+                $.post("valid",
+                    {
+                        name: "Donald Duck",
+                        city: "Duckburg" 
+                    },
+        function(data,status){
+            alert("Data: " + data + "\nStatus: " + status);
+        });
+
+
+            }
+
+            $("form").submit(function (event) {
+                event.preventDefault();
+                alert('Submit Disabled');
+                var a = $("#username").val();
+            });
+
+        });
+
+    </script>
+
+    <style>
+        .error-message{
+            color:red;
+            font-size: 13px;
+        }
+    </style>
+
+{% endblock %}
+
+{% block body %}
+    <div class="container"style="padding: 10px">
+        <center>
+            <form action="{% url 'validations' %}" id="user-form" class="form-horizontal">
+                {% csrf_token %}
+                <div class="form-group" >
+                  <label class="control-label col-sm-3" for="username">Username</label>
+                    <div class="col-sm-3">
+                         <input class="form-control" type="text" id="username">
+                         <p  id="error-username" class="error-message"> </p>
+                    </div>
+                </div>
+
+                <div class="form-group" style="padding: 5px">
+                    <label class="control-label col-sm-3" for="email">Email</label>
+                    <div class="col-sm-3">
+                        <input class="form-control" type="email" id="email">
+                        <p id="error-email" class="error-message"></p>
+                    </div>
+                </div>
+
+                <div class="form-group" style="padding: 5px">
+                    <label class="control-label col-sm-3" for="password">Password</label>
+                    <div class="col-sm-3">
+                        <input class="form-control" type="password" id="password">
+                        <p id="error-password" class="error-message"></p>
+                    </div>
+                </div>
+
+                <input type="submit" class="btn btn-success">
+            </form>
+        </center>
+    </div>
+{% endblock %}

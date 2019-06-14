@@ -1,0 +1,74 @@
+{% load staticfiles%}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hunger Zone</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static  'design/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static  'design/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'design/bootstrap-3.3.7-dist/jquery/jquery-3.3.1.min.js' %}"></script>
+    {% include 'restaurantheaderfiles.html' %}
+</head>
+<body>
+{% include 'restaurantheader.html' %}
+{% include 'restaurantsubheader.html' %}
+
+<div class="container">
+
+<h3>Your Orders</h3>
+    {% for order in orders %}
+        <div class="col-sm-6" style="padding: 10px">
+            <div style="border: 1px solid black;padding: 10px">
+
+                <h4>Customer Details</h4>
+                <span style="float: right">{{ order.dateoforder }}</span><br>
+                <b>Customer Name : </b>
+                <span style="float: right;margin-left: 100px">{{ order.name }}</span><br>
+                <b>Mobile no : </b>
+                <span style="float: right;margin-right: 30%">{{ order.mobileno }}</span><br>
+                <b>Address : </b>
+                <span style="float: right;margin-right: 30%">{{ order.deliveryaddress }}</span><br>
+                {% if order.orderstatus == 'not-accepted' %}
+                    <input id="{{ order.statusid }}-accept" type="button" class="btn btn-sm btn-success accept"  value="Accept">
+                {% endif %}
+
+                {% if order.deliverystatus == 'not-delivered' %}
+                <input id="{{ order.statusid }}-delivery" type="button" class="btn btn-sm btn-primary deliver"  value="Out for Delivered" style="display: none">
+                {% endif %}
+
+            </div>
+    <div >
+        <table class="table" style="text-align: center;border: 1px solid black">
+            <thead>
+                <th>Item Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total Amount</th>
+            </thead>
+            <tbody>
+                {% for item in order.items %}
+                    <tr>
+
+                        <td>{{ item.itemname }}</td>
+                        <td>&#8377;{{ item.price }}</td>
+                        <td>{{ item.qty }}</td>
+                        <td>&#8377;{{ item.amount }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+        </div>
+
+
+    {% endfor %}
+</div>
+{% include 'restaurantfooter.html' %}
+</body>
+</html>

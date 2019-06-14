@@ -1,0 +1,137 @@
+{% load staticfiles%}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hunger Zone</title>
+
+
+    {% include 'userheaderfiles.html' %}
+    <link rel="stylesheet" type="text/css" href="{% static  'design/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static  'design/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'design/bootstrap-3.3.7-dist/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/user.js' %}"></script>
+</head>
+<body>
+{% include 'userheader.html' %}
+{% include 'usersubheader.html' %}
+
+
+<div id="main-div">
+
+    <div id="head-info" class="col-sm-7">
+        <a target="_blank" href="{% static restaurant.photo %}"><img src="{% static restaurant.photo %}"></a><br>
+        <a href="" id="restaurant_name">{{ restaurant.restaurant_name }}</a>
+
+        <div class="restaurant_rating">
+            <center>
+                <span style="font-size: 27px;color: white;"><b>{{ rating }}</b></span>
+                <span style="font-size: 20px;color: darkseagreen"><b>/5</b></span>
+            </center>
+        </div>
+        <div>
+            <span id="vote">{{ votes }} votes</span>
+        </div>
+        <br>
+        <br>
+        <hr>
+
+        <div class="col-sm-12">
+        <div class="col-sm-2" style="padding: 5px;margin: 5px;height: 40px">
+            <a href="#div-write-review" id="a-write-review-1" onmouseenter="a_mouse_entered(this)" onmouseleave="a_mouse_exit(this)">
+                <span class="glyphicon glyphicon-pencil"></span>
+                <span> Add a review</span>
+            </a>
+        </div>
+        <div class="dropdown col-sm-2">
+            <button style="width: 100px;margin: 0px;font-size: 20px;height: 40px" class="dropdown-toggle" data-toggle="dropdown" id="a-write-review-2" onmouseenter="a_mouse_entered(this)" onmouseleave="a_mouse_exit(this)">
+            {% if your_rating == 0%}
+                <span class="fa fa-star" style="color: black"></span>
+            {% else %}
+                <span class="fa fa-star" style="color: orange"></span>
+            {% endif %}
+            Rate
+            </button>
+        <div class="dropdown-menu">
+            Pragath Here
+        </div>
+        </div>
+        </div>
+
+        <br><br>
+    </div>
+
+    <div class="restaurant_info col-sm-7">
+        <div class="col-sm-4">
+        <div style="margin: 7px">
+            <b>Phone Number</b><br>
+            {{ restaurant.mobileno }}<br>
+        </div>
+        <div style="margin: 7px">
+            <b>Cuisines</b><br>
+            {% for cuisine in cuisines %}
+                <a href="">{{ cuisine.cuisine_name }}</a>
+            {% endfor %}
+        </div>
+        </div>
+
+        <div class="col-sm-4">
+            <b>Address</b><br>
+            {{ restaurant.address }}
+        </div>
+
+        <div class="col-sm-4">
+            More Info<br>
+            {% if restaurant_pure_veg %}
+                <img class="tick" src="{% static 'design/images/tick.png' %}"> Vegetarian Only {% endif %}
+        </div>
+
+    </div>
+     <div class="col-sm-5" id="items" >
+        {% for item in food_items %}
+            {{ item }}<br>
+        {% endfor %}
+    </div>
+
+    <div class="col-sm-7" id="div-write-review">
+        <h4>Write a Review</h4>
+        <form class="form-horizontal" id="form-write-review">
+
+            {% csrf_token %}
+            <input id="token" value="{{ csrf_token }}" hidden="hidden">
+            <input id="restaurant_id" value="{{ restaurant.id }}" hidden="hidden">
+            <input type="text" placeholder="Help Others to know about {{ restaurant.restaurant_name }} " id="write-review-text"><br>
+            <input type="submit" class="btn btn-md btn-success" value="Add Your Review" id="write-review-button">
+            <div id="div-star" style="display: none;margin: 5px">
+                <span class="fa fa-star checked" onmouseover="markstar(this)" onclick="markstar(this)" id="1star"></span>
+                <span class="fa fa-star checked" onmouseover="markstar(this)" onclick="markstar(this)" id="2star"></span>
+                <span class="fa fa-star checked" onmouseover="markstar(this)" onclick="markstar(this)" id="3star"></span>
+                <span class="fa fa-star checked" onmouseover="markstar(this)" onclick="markstar(this)" id="4star"></span>
+                <span class="fa fa-star checked" onmouseover="markstar(this)" onclick="markstar(this)" id="5star"></span>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-sm-7" id="div-reviews">
+        <h4>Reviews</h4>
+    </div>
+
+        {% for review in all_reviews %}
+            <div class="col-sm-7 reviews">
+                <img href="" class="review-photo" src="{% static review.photo %}" width="70px" height="70px" style="border-radius: 50%">
+                <a href="" style="text-decoration: none"><b>{{ review.name }}</b></a><br>
+                {{ review.datetime }}<br>
+                <b>Rated</b><span style="background:#a8f2ff;font-size:15px;margin:5px;padding:2px;border:1px solid green;border-radius: 30%;">{{ review.rating }}</span>
+
+                <p>{{ review.review }}</p>
+            </div>
+        {% endfor %}
+
+</div>
+
+{% include 'userfooter.html'%}
+</body>
+</html>

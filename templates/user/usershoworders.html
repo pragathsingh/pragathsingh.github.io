@@ -1,0 +1,81 @@
+{% load staticfiles%}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hunger Zone</title>
+
+
+    <link rel="stylesheet" type="text/css" href="{% static  'design/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static  'design/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'design/bootstrap-3.3.7-dist/jquery/jquery-3.3.1.min.js' %}"></script>
+    <style>
+        img{
+            width: 20px;
+            height: 20px;
+        }
+        hr{
+            background-color: blue;
+        }
+    </style>
+    {% include 'userheaderfiles.html' %}
+</head>
+<body>
+{% include 'userheader.html' %}
+{% include 'usersubheader.html' %}
+
+<div>
+    {% for order in all_orders %}
+      <h3 style="margin-left: 40px">Order History</h3>
+        <div class="col-sm-12" style="margin: 20px;">
+            <h4>{{ order.dateoforder }}</h4>
+        <table class="table" style="border: 1px solid black;border-style:solid">
+            <thead>
+                <th>Id</th>
+                <th>Delivery Address</th>
+                <th>Payment Mode</th>
+                <th>Restaurant</th>
+                <th>Restaurant Address</th>
+                <th>Total Amount</th>
+            </thead>
+            <tbody>
+                <td>{{ order.orderid }}</td>
+                <td>{{ order.delivery_address }}</td>
+                <td>{{ order.payment_mode }}</td>
+                <td>{{ order.restaurantname }}</td>
+                <td>{{ order.restaurantaddress }}</td>
+                <td>{{ order.amount }}</td>
+            </tbody>
+        </table>
+
+
+        </div>
+        <div class="col-sm-12">
+        <h3>Food Items</h3>
+        {% for items in order.orders %}
+            <div class="col-sm-3 order-items" style="margin: 5px">
+{#                <img src="{% static  items.photo  %}" id="item-photo">#}
+                {% if items.mark  == 'veg' %}
+                    <img src="{% static 'design/images/veg_mark.png' %}" class="mark">
+                {% else %}
+                    <img src="{% static 'design/images/non-veg_mark.png' %}" class="mark">
+                {% endif %}
+                <a href="restaurantorderpage/{{ items.restaurantcity }}/{{ items.restaurantname }}#{{ items.itemname  }}" style="font-size: 18px;">{{ items.itemname }}</a><br>
+                <span style="margin-left: 30px">{{ items.qty }} x {{ items.mrp }} = {{ items.amount }}</span><br>
+                <span style="margin-left: 30px;">Ordered from <a href="restaurantorderpage/{{ items.restaurantcity }}/{{ items.restaurantname }}" style="font-size: 15px">{{ items.restaurantname }}</a></span>
+
+            </div>
+
+        {% endfor %}
+        </div>
+
+    {% endfor %}
+</div>
+</div>
+
+{% include 'userfooter.html' %}
+</body>
+</html>

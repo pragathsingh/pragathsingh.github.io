@@ -1,0 +1,89 @@
+{% load staticfiles%}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Hunger Zone</title>
+
+
+    {% include 'headerfiles.html' %}
+    <link rel="stylesheet" type="text/css" href="{% static  'design/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static  'design/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'design/bootstrap-3.3.7-dist/jquery/jquery-3.3.1.min.js' %}"></script>
+</head>
+<body>
+{% include 'publicheader.html' %}
+{% include 'publicsubheader.html' %}
+
+<script src="{% static 'js/usersearchpage.js' %}"></script>
+    <style>
+        .col-sm-3{
+            background-color: snow;
+            padding: 20px;
+            margin: 5px;
+        }
+        img{
+            width:250px;
+            height:250px;
+        }
+    </style>
+
+
+    <div class="container">
+
+    {% if restaurants %}
+        <h3> Search resulted to following Restaurants :</h3>
+        <div class="row">
+        {% for restaurant in restaurants %}
+            <div class="col-sm-3" id="restaurant_info_div">
+                <img src="{% static restaurant.photo %}" >
+                <h4>{{ restaurant.restaurantname }}</h4>
+                <input type="hidden" name="restaurant_id" value="{{ restaurant.id }}">
+                Email : {{ restaurant.email }}<br>
+                Contact number : {{ restaurant.mobileno }}<br>
+                Address : {{ restaurant.address }}<br>
+                City : {{ restaurant.city }}<br>
+                <input id="{{ restaurant.id }}_restaurant_name_city" hidden="hidden"
+                       value="restaurantorderpage/{{ restaurant.city }}/{{ restaurant.restaurantname }}">
+                <button onclick="click_view_restaurant(this)" id="{{ restaurant.id }}"
+                                           class="btn btn-md btn-primary">View Restaurant</button>
+            </div>
+
+        {% endfor %}
+        </div>
+    {% endif %}
+    {% if fooditems %}
+    <div class="row">
+        <select>
+            {% for item in fooditems %}
+            <option>{{ item.category }}</option>
+            {% endfor %}
+        </select>
+        <h3> Search resulted to following Food Items :</h3>
+        <div class="row">
+        {% for item in fooditems %}
+            <div class="col-sm-3">
+                <form class="form-horizontal">
+
+                    <img src="{% static item.photo %}" >
+                    <h4><a href="">{{ item.itemname }}</a></h4>
+                    Cuisine : {{ item.cuisinename }}<br>
+                    Price : {{ item.price }}<br>
+                    Gst : {{ item.gst }}<br>
+                    Mrp : {{ item.mrp }}<br>
+                    Restaurant : {{ item.restaurantname }}
+                </form>
+            </div>
+
+        {% endfor %}
+        </div>
+    </div>
+    </div>
+    {% endif %}
+
+
+{% include 'footer.html' %}

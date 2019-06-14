@@ -1,0 +1,30 @@
+img{
+    width: 120px;
+    height: 120px;
+}
+.main_divs{
+     margin: 20px;
+     border: 1px solid grey;
+     min-height: 123px;
+     min-width: 300px;
+     max-height: 123px;
+     max-width: 300px;
+     float: left;
+     position:sticky;
+    background: white;
+     }
+.div_with_image{
+    width: 120px;
+    height: 120px;
+    float: left;
+    margin: 1px;
+}
+
+body{
+    background: snow;
+}
+.main_divs_text{
+    font-size: 14px;
+    margin-left: 130px;
+    margin-top:6px;
+}

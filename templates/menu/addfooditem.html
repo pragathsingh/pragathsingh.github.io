@@ -1,0 +1,116 @@
+{% load staticfiles%}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hunger Zone</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static  'design/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static  'design/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'design/bootstrap-3.3.7-dist/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/addfooditem.js' %}"></script>
+    {% include 'restaurantheaderfiles.html' %}
+</head>
+<body>
+{% include 'restaurantheader.html' %}
+{% include 'restaurantsubheader.html' %}
+
+
+
+<div class="container">
+<center><h3>Add Food Item</h3></center>
+    <form action="{% url 'addfooditemaction' %}" method="post" class="form-horizontal" enctype="multipart/form-data">
+        {% csrf_token %}
+
+
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="itemname">Item Name</label>
+            <div class="col-sm-4">
+                <input class="form-control col-sm-10" type="text" name="itemname" id="itemname">
+            </div>
+        </div>
+
+         <div class="form-group">
+            <label for="cuisineid" class="control-label col-sm-3">Cuisine</label>
+            <div class="col-sm-3">
+                <select class="form-control col-sm-10" name="cuisineid" id="cuisineid">
+                    {% for each in cuisines %}
+                        <option value="{{ each.id }}">{{ each.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+         <div class="form-group">
+            <label for="category_id" class="control-label col-sm-3">Category</label>
+            <div class="col-sm-3">
+                <select class="form-control col-sm-10" name="category_id" id="category_id">
+                    {% for category in categories %}
+                        <option value="{{ category.id }}">{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="price">Price</label>
+            <div class="col-sm-4">
+                <input class="form-control col-sm-10"  min="1" step=".01" type="number" name="price" id="price">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="gst">Gst</label>
+            <div class="col-sm-4">
+                <input class="form-control col-sm-10" min="1" max="100" type="number" name="gst" id="gst">
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="mrp">Mrp</label>
+            <div class="col-sm-4">
+                <input class="form-control col-sm-10" min="1" step=".01" type="number" name="mrp" id="mrp">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="mark" class="control-label col-sm-3">Category</label>
+            <div class="col-sm-3">
+                <select class="form-control col-sm-10" name="mark" id="mark">
+                    <option>Veg</option>
+                    <option>Non-Veg</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="photo">Photo</label>
+            <div class="col-sm-4">
+                <input class="form-control col-sm-10" type="file" accept="image/jpeg image/png" name="photo" id="photo">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="status">Status</label>
+            <div class="col-sm-4">
+                <select class="form-control col-sm-10" name="status" id="status">
+                    <option>Active</option>
+                    <option>Not Active</option>
+                </select>
+            </div>
+        </div>
+
+    <div class="col-sm-7">
+        <input style="float: right" value="Add" type="submit" class="btn btn-md btn-success">
+    </div>
+
+    </form>
+</div>
+{% include 'restaurantfooter.html' %}
+</body>
+</html>

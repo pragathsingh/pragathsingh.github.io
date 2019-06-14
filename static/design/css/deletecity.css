@@ -1,0 +1,18 @@
+.delete-message{
+    color:red;
+    animation-name: example;
+    animation-duration: 4s;
+    animation: myfirst 5s linear 2s infinite alternate;
+}
+.info-message{
+    color:cadetblue;
+}
+.container{
+
+}
+
+@keyframes myfirst {
+0%   {color:red; }
+50%  {color:yellow; }
+100% {color:red; }
+}

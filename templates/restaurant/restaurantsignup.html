@@ -1,0 +1,111 @@
+
+{% load staticfiles%}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hunger Zone</title>
+
+
+    {% include 'headerfiles.html' %}
+    <script src="{% static 'js/restaurantheader.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static  'design/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static  'design/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'design/bootstrap-3.3.7-dist/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/restaurantsignup.js' %}"></script>
+</head>
+<body>
+{% include 'publicheader.html' %}
+{% include 'publicsubheader.html' %}
+<input id="token" value="{{ csrf_token }}" hidden="hidden">
+<div class="container">
+    <center><h3>Restaurant Signup</h3></center><br>
+    <form class="form-horizontal" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="restaurantname" class="control-label col-sm-3">Restaurant Name</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control col-sm-10 " id="restaurantname" name="restaurantname">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="email" class="control-label col-sm-3">Restaurant Email</label>
+            <div class="col-sm-4">
+                <input type="email" class="form-control col-sm-10" id="email" name="email">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="password" class="control-label col-sm-3">Password</label>
+            <div class="col-sm-4">
+                <input type="password" class="form-control col-sm-10" id="password" name="password">
+            </div>
+        </div>
+
+
+          <div class="form-group">
+            <label for="mobileno" class="control-label col-sm-3">Restaurant Mobileno</label>
+            <div class="col-sm-4">
+                <input type="number" min="999999999" max="9999999999" class="form-control col-sm-10" id="mobileno" name="mobileno">
+            </div>
+        </div>
+
+          <div class="form-group">
+            <label for="address" class="control-label col-sm-3">Address</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control col-sm-10" id="address" name="address">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="city" class="control-label col-sm-3">City</label>
+            <div class="col-sm-4">
+                <select  class="form-control col-sm-10" id="city" name="city">
+                    {% for a in city %}
+                        <option>{{ a.cityname }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="ownername" class="control-label col-sm-3">Owner Name</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control col-sm-10" id="ownername" name="ownername">
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="status" class="control-label col-sm-3">Status</label>
+            <div class="col-sm-4">
+            {#<input type="text" class="form-control col-sm-10" id="status" name="status">#}
+                <select id="status" name="status" class="form-control" disabled>
+                    <option>Not Approved</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="photo">Restaurant Photo</label>
+            <div class="col-sm-4">
+                <input class="form-control col-sm-10" type="file" id="photo" name="photo" accept="image/jpg image/png">
+            </div>
+        </div>
+
+         <div class="form-group">
+            <div class="col-sm-7">
+                <input style="float: right" id="addrestaurant" type="button" class="btn btn-md btn-success" value="Add">
+            </div>
+        </div>
+
+    </form>
+</div>
+{% include 'footer.html' %}
+</body>
+</html>

@@ -1,0 +1,113 @@
+{% load staticfiles%}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hunger Zone</title>
+
+
+    {% include 'userheaderfiles.html' %}
+    <link rel="stylesheet" type="text/css" href="{% static  'design/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static  'design/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'design/bootstrap-3.3.7-dist/jquery/jquery-3.3.1.min.js' %}"></script>
+    <style>
+        img{
+
+        }
+    </style>
+</head>
+<body>
+{% include 'userheader.html' %}
+{% include 'usersubheader.html' %}
+
+<div class="container" style="margin:20px;padding: 10px">
+
+{#  <div class="col-sm-8" id="user-name-photo">#}
+{#      <center><img src="{% static user.photo %}" style="width: 200px;height: 200px;">#}
+{#      <span id="user-name"></span></center>#}
+{#  </div>#}
+    <div style="min-width: 300px;margin-left:200px;display: block" class="col-sm-12" >
+    <div class="col-sm-3" style="margin:20px;padding: 10px">
+    <form action="changeuserpicture" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div name="form-group">
+            <label class="control-label">User Photo</label>
+            <div>
+                <img src="{% static user.photo %}" width="200px" height="200px">
+                <input  type="file" id="photo" name="photo" accept="image/jpg image/png">
+            </div>
+        </div>
+    </form>
+    </div>
+
+
+<div class="main-form col-sm-6" style="margin:20px;padding: 10px">
+  <form action="{% url 'usersettingsaction' %}" method="post">
+    {% csrf_token %}
+      <div class="form-group">
+      <label class="control-label" for="username">Username</label>
+      <div>
+        <input type="text" class="form-control" id="username" placeholder="Enter Username" name="username" value="{{ user.name }}">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label" for="password">Password</label>
+      <div>
+        <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" value="{{ user.password }}">
+      </div>
+    </div>
+
+      <div class="form-group">
+    <label class="control-label" for="mobileno">Mobile No</label>
+      <div>
+        <input type="number" class="form-control" id="mobileno" name="mobileno" placeholder="Mobile" value="{{ user.mobileno }}">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label" for="address">Address</label>
+      <div >
+            <input class="form-control" type="text" name="address" id="address" placeholder="Address Goes here" value="{{ user.address }}">
+        </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label" for="city">City</label>
+      <div >
+        <select class="form-control" id = "city" name="city">
+            {% for city in cities %}
+                <option {% if user.city == city %}selected="selected"{% endif %}>{{ city }}</option>
+            {% endfor %}
+        </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label" for="email">Email</label>
+      <div>
+        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="{{ user.email }}" disabled>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 ">
+        <button style="float:right" type="submit" class="btn btn-md btn-success">Update</button>
+      </div>
+    </div>
+    <input type="hidden" id="id" name="id" value="{{ user.id }}">
+  </form>
+
+</div>
+
+
+    </div>
+
+
+</div>
+{% include 'footer.html' %}
+</body>
+</html>

@@ -1,0 +1,90 @@
+{% load staticfiles%}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hunger Zone</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static  'design/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static  'design/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'design/bootstrap-3.3.7-dist/jquery/jquery-3.3.1.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'design/css/usersearch.css' %}">
+    {% include 'userheaderfiles.html' %}
+</head>
+<body>
+{% include 'userheader.html' %}
+{% include 'usersubheader.html' %}
+
+<div class="container">
+    {% if restaurants %}
+        <h3> Search resulted to following Restaurants :</h3>
+        <br>
+        <div class="row">
+        {% for restaurant in restaurants %}
+            <div class="col-lg-4 restaurant_info">
+                <a  href="/restaurantorderpage/{{ restaurant.city }}/{{ restaurant.restaurantname }}" style="background-color: white">
+                    <img src="{% static restaurant.photo %}">
+                    <div style="background: white">
+                        <h4 style="font-size: 22px;"><b>{{ restaurant.restaurantname }}</b></h4>
+                    <div >
+                        {{ restaurant.address }}<br>
+                    </div>
+                    </div>
+                </a>
+            <div style="background: white">
+                {% for category in restaurant.categories %}
+                {{ category }}
+            {% endfor %}
+            </div>
+
+            </div>
+
+        {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if fooditems %}
+    <div class="row">
+        <h3> Search resulted to following Food Items :</h3><br>
+        <hr style="background-color:grey">
+        <div class="row " >
+        {% for item in fooditems %}
+            <div class="col-lg-4">
+            <div style="margin: 5px;padding: 5px;">
+                <a href="/restaurantorderpage/{{ item.restaurantcity }}/{{ item.restaurantname }}#{{ item.itemname }}"
+                    style="text-decoration: none;">
+                    <img src="{% static item.photo %}" class="food-items-image">
+                </a>
+            </div>
+            <div style="margin: 5px;padding: 5px;">
+                <a href="/restaurantorderpage/{{ item.restaurantcity }}/{{ item.restaurantname }}#{{ item.itemname }}"
+                    style="text-decoration: none;">
+                     {% if item.mark == 'veg' %}
+                         <img src="{% static 'design/images/veg_mark.png' %}" class="mark">
+                     {% else %}
+                         <img src="{% static 'design/images/non-veg_mark.png'  %}" class="mark">
+                     {% endif %}
+                </a>
+                    <span>{{ item.itemname }}</span>
+                <br>
+                <span class="restaurant_info_text">&#8377;{{ item.price }}</span><br>
+                <span class="restaurant_info_text">{{ item.cuisinename }}</span><br>
+
+                <a class="restaurant_info_text" href="/restaurantorderpage/{{ item.restaurantcity }}/{{ item.restaurantname }}">{{ item.restaurantname }}</a>
+
+            </div>
+            </div>
+
+        {% endfor %}
+        </div>
+    </div>
+    </div>
+    {% endif %}
+
+
+{% include 'footer.html' %}
+</body>
+</html>

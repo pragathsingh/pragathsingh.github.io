@@ -1,0 +1,89 @@
+{% load staticfiles%}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hunger Zone</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static  'design/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <script src="{% static  'design/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'design/bootstrap-3.3.7-dist/jquery/jquery-3.3.1.min.js' %}"></script>
+     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <link href="{% static 'design/css/order.css'%}">
+    <script src="{% static 'js/order.js' %}"></script>
+    {% include 'userheaderfiles.html' %}
+    <style>
+        img{
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+
+</head>
+<body>
+{% include 'userheader.html' %}
+{% include 'usersubheader.html' %}
+<div>
+    <input id="amounts" hidden="hidden" value="{{ request.session.CARTAMOUNTS }}">
+    <form id="order-details-form" action="{% url 'userorderdetails' %}" method="post" hidden="hidden">
+        {% csrf_token %}
+        <input id="neworderids" name="neworderids" value="">
+    </form>
+    <div class="col-sm-12">
+        <div class="col-sm-7 payment_method">
+            <h3>Select Payment Method</h3>
+            <form id="paymentinfo">
+                {% csrf_token %}
+                <input type="radio" value="online" name="payment" id="payment"><label for="online">Online Payment</label><br>
+                <input type="radio" value="cod" name="payment" id="payment" checked><label for="cod" >Cash on Delivery</label>
+                <input id="paymentmode" value="cod" hidden="hidden">
+            </form>
+        </div>
+
+        <div class="col-sm-3 details">
+            <h4><b>Personal Details</b></h4>
+            {{ user.name }}<br>
+            {{ user.mobileno }}<br>
+            {{ user.email }}<br>
+            <h4><b>Delivery Details</b></h4>
+            {{ user.address }}
+        </div>
+
+        <div class="col-sm-3 cart-items">
+            {% for item in cart_items %}
+            <div id="{{ item.id }}-item-id" class="cart_items" >
+
+                <div>
+                     {% if item.mark == 'veg' %}
+                        <img src="{% static 'design/images/veg_mark.png' %}" class="mark">
+                     {% else %}
+                        <img src="{% static 'design/images/non-veg_mark.png' %}" class="mark">
+                     {% endif %}
+
+                     <a href="" class="item_name">{{ item.name }}</a>
+                     <input id="{{ item.id }}-item-amount" value="{{ item.amount }}" hidden="hidden">
+                     <button id="{{ item.id }}-remove-item-button" class="btn btn-sm remove-item">-</button>
+                </div>
+
+                 <p class="mrp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ item.qty }} x {{ item.mrp }}<span style="float:right;">&#8377;{{ item.amount }}</span></p>
+
+            </div>
+        {% endfor %}
+            <hr style="color: snow">
+            <div>
+                Subtotal<span style="float: right">&#8377;<span id="subtotal">{{ totalamount }}</span></span>
+
+            </div>
+            <button id="pay" class="btn btn-md btn-success">Submit</button>
+
+        </div>
+
+
+    </div>
+</div>
+
+</body>
+</html>

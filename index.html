@@ -1,0 +1,302 @@
+{% load staticfiles %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hunger Zone</title>
+    {% include 'headerfiles.html' %}
+</head>
+<body>
+{% include 'publicindexheader.html' %}
+
+<!-- banner -->
+	<div class="callbacks_container">
+		<ul class="rslides" id="slider3">
+			<li>
+				<div class="slider-info bg1">
+					<div class="w3l-overlay">
+						<div class="banner-text text-center container">
+							<h3 class="text-white mb-md-4 mb-3">Find the Best Restaurants, Cafes and Bars
+								<span>Near you</span>
+							</h3>
+							<p class="movetxt text-white mb-4">Find Delivery Outlet near you</p>
+							<div class="search-agile">
+                            <form action="{% url 'usersearch' %}" method="get">
+                                <input type="search" id="search" name="search" placeholder="Search here..." required="">
+								<input id="search-button" type="submit" value="Search">
+								<div class="clearfix"> </div>
+                            </form>
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="slider-info bg2">
+					<div class="w3l-overlay">
+						<div class="banner-text text-center container">
+							<h3 class="text-white mb-md-4 mb-3">Find the Best Restaurants, Cafes and Bars
+								Near you
+							</h3>
+							<p class="movetxt text-white mb-4">Find Delivery Outlet near you</p>
+							<div class="search-agile">
+								<form action="{% url 'usersearch' %}" method="get">
+									<input type="search" name="search" placeholder="Search here..." required="">
+									<input type="submit" value="Search">
+									<div class="clearfix"> </div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<!-- //banner -->
+
+	<!-- about -->
+	<div class="about py-5" id="about">
+		<div class="container py-xl-5 py-lg-3">
+			<h3 class="title text-center text-dark mb-sm-5 mb-4">
+				<span>Welcome to Eatigo</span> world's no.1 tasty food</h3>
+			<div class="row about-bottom-w3l text-center pt-lg-5">
+				<div class="col-sm-6 about-grid">
+					<div class="about-grid-main">
+						<img src="{% static 'web/images/1.jpg' %}" alt="" class="img-fluid" style="min-height: 350px;border-radius: 3%;" >
+						<h4 class="mb-3" style="margin: 10px">Hot and Tasty food</h4>
+						<p></p>
+
+					</div>
+				</div>
+				<div class="col-sm-6 about-grid mt-sm-0 mt-4">
+					<div class="about-grid-main">
+						<img src="{% static 'web/images/a2.jpg' %}" alt="" class="img-fluid" style="min-height: 350px;border-radius: 3%;">
+						<h4 class="mb-3" style="margin: 10px;">100% Healthy Food</h4>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //about -->
+
+	<!-- services -->
+	<div class="w3ls-middle pt-5" id="services">
+		<div class="container py-xl-5 py-lg-3">
+			<h3 class="title text-center text-dark mb-sm-5 mb-4">
+				<span>The great advantages</span> of a hotel is that it is a refuge from home life</h3>
+			<div class="row pt-lg-5">
+				<div class="col-lg-6 text-center">
+					<img src="{% static 'web/images/3.png' %}" alt="" class="img-fluid chef-img">
+				</div>
+				<div class="col-lg-4 mt-lg-0 mt-4">
+					<div class="service1-wthree">
+						<h4>1</h4>
+						<h6 class="text-dark mt-3 mb-2">Meal Delivery</h6>
+						<p></p>
+					</div>
+					<div class="service1-wthree my-4">
+						<h4>2</h4>
+						<h6 class="text-dark mt-4 mb-2">Catering</h6>
+
+					</div>
+					<div class="service1-wthree">
+						<h4>3</h4>
+						<h6 class="text-dark mt-4 mb-2">Events</h6>
+
+					</div>
+				</div>
+				<div class="offset-lg-2"></div>
+			</div>
+		</div>
+	</div>
+	<!-- //services -->
+
+	<!-- middle section one -->
+	<div class="w3ls-middle-works py-5 text-center" id="specials">
+		<div class="py-xl-5 py-lg-3">
+			<h3 class="title text-center text-dark mb-lg-5">
+				<span>Fresh, organic ingredients,</span>Carefully prepared, Eat green for a reason.</h3>
+			<a href="#" class="button-w3ls my-4 text-center" data-toggle="modal" data-target="#exampleModalCenter1">Read more about Specials
+				<i class="fas fa-long-arrow-alt-right ml-3"></i>
+			</a>
+			<div class="d-flex special-agiles text-left">
+				<div class="col-md-6 grids-w3ls-left">
+					<p class="mb-2 text-white">Our Specials</p>
+					<h4 class="title text-dark mb-md-4">Carefully prepared, Fresh, organic ingredients.</h4>
+					<a href="#" class="button-w3ls mt-4" data-toggle="modal" data-target="#exampleModalCenter1">Read More
+						<i class="fas fa-long-arrow-alt-right ml-3"></i>
+					</a>
+				</div>
+				<div class="col-md-6 grids-w3ls-right">
+					<img src="{% static 'web/images/middle.jpg' %}" alt="" class="img-fluid">
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //middle section one -->
+
+	<!-- middle section two -->
+	<div class="agile-wthree-works py-5" id="some">
+		<div class="container py-xl-5 py-lg-3">
+			<div class="row">
+				<div class="grids-w3ls-right-2 offset-lg-7 offset-sm-4">
+					<h4 class="title text-dark mb-sm-5 mb-4">
+                           Our mission is to ensure
+                        nobody has a bad meal.
+                    </h4>
+					<p class="mt-4">
+						</p>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //middle section two -->
+
+	<!-- gallery -->
+	<div class="gallery pt-5" id="gallery">
+		<div class="container py-xl-5 py-lg-3">
+			<div class="row gallery_grids">
+				<div class="col-4 agile-gallery_grid_main">
+					<div class="gallery-img-grid gallery_grid1 hover14 column">
+						<div class="gallery_effect">
+							<a href="{% static 'web/images/g1.jpg' %}" class="sb" title="quis nostrud exercitation ullamco laboris quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum">
+								<figure>
+									<img src="{% static 'web/images/g1.jpg' %}" alt=" " class="img-fluid" />
+								</figure>
+							</a>
+						</div>
+					</div>
+					<div class="gallery-img-grid hover14 column">
+						<div class="gallery_effect">
+							<a href="{% static 'web/images/g2.jpg' %}" class="sb" title="quis nostrud exercitation ullamco laboris quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum">
+								<figure>
+									<img src="{% static 'web/images/g2.jpg' %}" alt=" " class="img-fluid" />
+								</figure>
+							</a>
+						</div>
+					</div>
+					<div class="gallery-img-grid hover14 column">
+						<div class="gallery_effect">
+							<a href="{% static 'web/images/g3.jpg' %}" class="sb" title="quis nostrud exercitation ullamco laboris quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum">
+								<figure>
+									<img src="{% static 'web/images/g3.jpg' %}" alt=" " class="img-fluid" />
+								</figure>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-4 agile-gallery_grid_main">
+					<div class="gallery-img-grid hover14 column">
+						<div class="gallery_effect">
+							<a href="{% static 'web/images/g7.jpg' %}" class="sb" title="quis nostrud exercitation ullamco laboris quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum">
+								<figure>
+									<img src="{% static 'web/images/g7.jpg' %}" alt=" " class="img-fluid" />
+								</figure>
+							</a>
+						</div>
+					</div>
+					<div class="gallery-img-grid hover14 column">
+						<div class="gallery_effect">
+							<a href="{% static 'web/images/g8.jpg' %}" class="sb" title="quis nostrud exercitation ullamco laboris quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum">
+								<figure>
+									<img src="{% static 'web/images/g8.jpg' %}" alt=" " class="img-fluid" />
+								</figure>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-4 agile-gallery_grid_main">
+					<div class="gallery-img-grid gallery_grid1 hover14 column">
+						<div class="gallery_effect">
+							<a href="{% static 'web/images/g4.jpg' %}" class="sb" title="quis nostrud exercitation ullamco laboris quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum">
+								<figure>
+									<img src="{% static 'web/images/g4.jpg' %}" alt=" " class="img-fluid" />
+								</figure>
+							</a>
+						</div>
+					</div>
+					<div class="gallery-img-grid hover14 column">
+						<div class="gallery_effect">
+							<a href="{% static 'web/images/g5.jpg' %}" class="sb" title="quis nostrud exercitation ullamco laboris quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum">
+								<figure>
+									<img src="{% static 'web/images/g5.jpg' %}" alt=" " class="img-fluid" />
+								</figure>
+							</a>
+						</div>
+					</div>
+					<div class="gallery-img-grid hover14 column">
+						<div class="gallery_effect">
+							<a href="{% static 'web/images/g6.jpg' %}" class="sb" title="quis nostrud exercitation ullamco laboris quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum">
+								<figure>
+									<img src="{% static 'web/images/g6.jpg' %}" alt=" " class="img-fluid" />
+								</figure>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //gallery -->
+
+	<!-- contact -->
+	<div class="address py-5" id="contact">
+		<div class="container py-xl-5 py-lg-3">
+			<h3 class="title text-center text-dark mb-sm-5 mb-4">
+				<span>Contact US</span> world's no.1 tasty food</h3>
+			<div class="row address-row pt-lg-5">
+				<div class="col-lg-6">
+					<div class="address-right p-sm-5 p-4">
+						<div class="address-info wow fadeInRight animated" data-wow-delay=".5s">
+							<h4 class="mb-3">Address</h4>
+							<p>123 Town Hall , 143001
+								<span>Amritsar , Punjab</span>
+							</p>
+						</div>
+						<div class="address-info address-mdl wow fadeInRight animated my-sm-5 my-4" data-wow-delay=".7s">
+							<h4 class="mb-3">Phone </h4>
+							<p>+91 75888502376</p>
+							<p>+91 7009967568</p>
+						</div>
+						<div class="address-info agileits-info wow fadeInRight animated" data-wow-delay=".6s">
+							<h4 class="mb-3">Mail</h4>
+							<p>
+								<a href="mailto:eatigoo@gmail.com"> eatigoo@gmail.com</a>
+                            </p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 address-left wow agile fadeInLeft animated mt-lg-0 mt-5" data-wow-delay=".5s">
+					<div class="address-grid p-sm-5 p-4">
+						<h4 class="wow fadeIndown animated mb-3" data-wow-delay=".5s">Get In Touch</h4>
+						<form action="#" method="post">
+							<div class="form-group">
+								<input type="text" placeholder="Name" name="name" class="form-control" required="">
+							</div>
+							<div class="form-group">
+								<input type="email" placeholder="Email" name="email" class="form-control" required="">
+							</div>
+							<div class="form-group">
+								<textarea placeholder="Message"  name="Message" class="form-control" required=""></textarea>
+							</div>
+							<input type="submit" value="SEND">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--//contact-->
+
+
+{% include 'footer.html' %}
+</body>
+</html>
